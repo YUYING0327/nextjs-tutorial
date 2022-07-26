@@ -28,3 +28,31 @@
    const { productId, reviewId } = router.query;
    return Review {reviewId} for product {productId}
 4. 現在到 /product/1/review/1
+
+# Catch All Routes
+
+1. 在 pages 檔案夾新增一個 docs 的檔案夾，並新增 [...params].js 的檔案
+   現在，在 /product/ 後可以一直加路徑 /product/1/2/3/4/5 都會看到 home page
+2. 使用 useRouter
+   const router = useRouter();
+   const { params } = router.query;
+   現在使用 console.log 來查看 params，會看到一組 array(5)，項目即是 1,2,3,4,5
+   但是最初渲染出來的 params 是 undefined
+   所以我們要讓 params 一開始為 array => const { params = [] } = router.query;來避免發生問題
+3. if (params.length === 2) {
+   return (
+      <h1>
+      Viewing docs for feature {params[0]} and concept {params[1]}
+      </h1>
+      );
+   } else if (params.length === 1) {
+      return <h1>Viewing docs for feature {params[0]}</h1>;
+   }
+
+   return <h1>Docs Home Page</h1>;
+
+   試試 http://localhost:3000/docs/feature1
+   http://localhost:3000/docs/feature1/concept1
+
+4. 現在如果到 http://localhost:3000/docs 將會看到 404 找不到頁面的畫面
+   可以在 [...params].js 多加括號 [[...params].js]
