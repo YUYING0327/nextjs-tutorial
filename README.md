@@ -56,3 +56,12 @@
 
 4. 現在如果到 http://localhost:3000/docs 將會看到 404 找不到頁面的畫面
    可以在 [...params].js 多加括號 [[...params].js]
+
+# Link Component Navigation
+
+1. 在主頁面 index.js 導入 Link => import Link from 'next/link';
+2. 這樣就可以使用 Link 標籤 <Link></Link>
+   <Link href="/blog">
+        <a>Blog</a>
+   </Link>
+   注意的是，nextjs 用 Link href要放在 Link 標籤裡面
